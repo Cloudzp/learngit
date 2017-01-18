@@ -1,4 +1,5 @@
-﻿1 什么事git？
+﻿一 git基础命令
+1 什么事git？
    git是由linux社区人员使用c语言编写的分布式版本管理工具；
 2 安装完成后的信息绑定；
   命令：$ git config --global user.name "username"
@@ -32,5 +33,35 @@
 11 删除版本库中的文件；
     命令：$ git rm <file> //想要删除版本库中的文件时可使用此条命令；注意：会同时删除掉工作区的文件，
 	 想要回复文件，可使用命令：git reset HEAD filename 恢复版本库中的文件，使用 git checkout -- filename 恢复工作区的文件；
-12 
+二 远程仓库：
+   1 与远程仓库建立连接（使用免费的GitHub远程仓库）：
+   2 设置本地信息；
+      a)在用户目录下创建.ssh文件 方法：使用命令：$ ssh-keygen -t rsa -C "447954448@qq.com" 
+	    然后一路回车，就创建好了；
+	  b)注册并登陆账号-->点击右边图像-->点击your profile -->点击左边菜单选项中的SSH and GPG Keys -->点击New SSH Key --> 随便填写一个标题 -->将.ssh文件下的id_rsa.pub文件中的内容添加到文本框中 点击 保存 ok！！
+   3 创建并添加添加远程仓库；
+      登陆你的GitHub 点击上面的加号--》 点击 new repository(新建一个仓库)--》在repo name中填写 learngit 其他选择默认点击提交；
+	  在本地界面（切换到本地仓库目录下输入）
+	  输入命令：$ git remote add origin git@github.com:Cloudzp/learngit.git
+	            $ git remote add origin git@server-name(要连接的中心服务器的油箱):path（你的GitHub用户名）/repo-name.git(要连接的仓库名)
+      添加成功后远程仓库的名字就是：origin
+   4将本地文件推送到远程库上：
+     命令：$ git push -u origin master // 第一次推送时需要加上参数 -u 将本地的分之与远程的分之关联起来；
+	         //master 表示当本地仓库版本库中的一个分之；
+	       $ git push origin master //表示将本地的最新版本信息推送到GitHub
+    5 根据远程仓库克隆本地仓库：
+	  命令：$ git clone git@github.com:Cloudzp/learngit.git
+ 三 分支管理：
+    1 什么是分支管理？
+	   多个不同的正在进行的工作目录！
+	2 为什么使用分支？
+	    当你有工作文件既不想上传到被大家公用，放在本地有害怕文件丢失的时候就需要创建分支
+		当你完成自己的工作后可通过合并分支；
+	3 创建与合并分支
+	   a)创建 dev 指针：
+	      命令：$ git checkout -b dev //git checkout 命令上加上参数-b表示创建并且换，相当于以下两条命令：
+		      $ git branch dev
+			  $ git checkout dev
+       b)查看当前分支：
+          命令：$ git branch //结果是列出所有的分支；	   
 
