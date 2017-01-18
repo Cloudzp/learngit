@@ -29,5 +29,8 @@
 		 $ git relog //可用来查看被撤销的版本号；
 10 撤销修改；
     命令：$ git checkout --readme.txt //撤销工作区文件的修改，使文件回到第一次add或者commit的时期；中的--很重要 没有了-- 就表示创建新的分之；
-	
+11 删除版本库中的文件；
+    命令：$ git rm <file> //想要删除版本库中的文件时可使用此条命令；注意：会同时删除掉工作区的文件，
+	 想要回复文件，可使用命令：git reset HEAD filename 恢复版本库中的文件，使用 git checkout -- filename 恢复工作区的文件；
+12 
 
