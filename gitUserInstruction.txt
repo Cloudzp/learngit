@@ -1,0 +1,33 @@
+﻿1 什么事git？
+   git是由linux社区人员使用c语言编写的分布式版本管理工具；
+2 安装完成后的信息绑定；
+  命令：$ git config --global user.name "username"
+        $ git config --global user.email "email_address"
+3 创建版本库；
+   命令：$ mkdir git  // 创建文件夹；
+         $ cd git  //切换到工作目录；
+		 $ pwd //查看当前工作目录；
+		 $ git init //将当前工作目录建成版本库；
+		 显示 Initialized  empty Git repository in /user/git
+4 把文件添加到仓库；
+   命令：$ git add readme.txt
+5 提交文件到本地仓库；
+   命令：$ git commit -m "注释性文字"  //注意：文件添加时需要逐一添加，
+   提交是一并提交；
+6 查看仓库当前状态；
+    命令：$ git status //有与仓库文件不一致时会用红色标出；
+7 查看具体哪里不同；
+   命令：$ git diff
+8 版本回退；
+   命令：$ git reset --hard HEAD^// 一个^表示回退一个版本，两个表示回退两个版本、
+    以此类推，
+	     $ git reset --hard HEAD^ 100// 表示回退到100个版本以前；
+		 $ git reset --hard commitid(提交时的版本号)//表示回到对应的版本；；
+9 查看所有版本信息；
+   命令：$ git log //次命令为多行显示详细信息；
+         $ git log --pretty=oneline //次命令为显示单行信息，只显示版本号和提交注释
+		 $ git relog //可用来查看被撤销的版本号；
+10 撤销修改；
+    命令：$ git checkout --readme.txt //撤销工作去文件的修改；中的--很重要 没有了-- 就表示创建新的分之；
+	
+
