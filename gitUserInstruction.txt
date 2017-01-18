@@ -59,11 +59,12 @@
 		当你完成自己的工作后可通过合并分支；
 	3 创建与合并分支
 	   a)创建 dev 指针：
-	      命令：$ git checkout -b dev //git checkout 命令上加上参数-b表示创建并且换，相当于以                    下两条命令：
+	      命令：$ git checkout -b dev（创建加切换） //git checkout 命令上加上参数-b表示创建并且换，相当于以                    下两条命令：
 		      $ git branch dev
 		      $ git checkout dev
            b)查看当前分支：
               命令：$ git branch //结果是列出所有的分支；
 	   c)合并分支：
-	       命令：$ git merge dev // 作用是合并制定分支到当前分支；
-
+	       命令：$ git merge dev // 作用是合并制定分支到当前分支；注意:合并分支时当前分支不能有修改或未提交的文件，切换分支也一样；
+       d)删除分支：
+	        命令：$ git branch -d dev //表示删除dev分支
