@@ -28,6 +28,6 @@
          $ git log --pretty=oneline //次命令为显示单行信息，只显示版本号和提交注释
 		 $ git relog //可用来查看被撤销的版本号；
 10 撤销修改；
-    命令：$ git checkout --readme.txt //撤销工作去文件的修改；中的--很重要 没有了-- 就表示创建新的分之；
+    命令：$ git checkout --readme.txt //撤销工作区文件的修改，使文件回到第一次add或者commit的时期；中的--很重要 没有了-- 就表示创建新的分之；
 	
 
