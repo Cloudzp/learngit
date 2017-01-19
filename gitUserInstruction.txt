@@ -1,4 +1,5 @@
-﻿1 什么事git？
+﻿一 git基础命令
+1 什么事git？
    git是由linux社区人员使用c语言编写的分布式版本管理工具；
 2 安装完成后的信息绑定；
   命令：$ git config --global user.name "username"
@@ -32,5 +33,109 @@
 11 删除版本库中的文件；
     命令：$ git rm <file> //想要删除版本库中的文件时可使用此条命令；注意：会同时删除掉工作区的文件，
 	 想要回复文件，可使用命令：git reset HEAD filename 恢复版本库中的文件，使用 git checkout -- filename 恢复工作区的文件；
-12 
+二 远程仓库：
+   1 与远程仓库建立连接（使用免费的GitHub远程仓库）：
+   2 设置本地信息；
+      a)在用户目录下创建.ssh文件 方法：使用命令：$ ssh-keygen -t rsa -C "447954448@qq.com" 
+	    然后一路回车，就创建好了；
+	  b)注册并登陆账号-->点击右边图像-->点击your profile -->点击左边菜单选项中的SSH and GPG Keys -->点击New SSH Key --> 随便填写一个标题 -->将.ssh文件下的id_rsa.pub文件中的内容添加到文本框中 点击 保存 ok！！
+   3 创建并添加添加远程仓库；
+      登陆你的GitHub 点击上面的加号--》 点击 new repository(新建一个仓库)--》在repo name中填写 learngit 其他选择默认点击提交；
+	  在本地界面（切换到本地仓库目录下输入）
+	  输入命令：$ git remote add origin git@github.com:Cloudzp/learngit.git
+	            $ git remote add origin git@server-name(要连接的中心服务器的油箱):path（你的GitHub用户名）/repo-name.git(要连接的仓库名)
+      添加成功后远程仓库的名字就是：origin
+   4将本地文件推送到远程库上：
+     命令：$ git push -u origin master // 第一次推送时需要加上参数 -u 将本地的分之与远程的分之关联起来；
+	         //master 表示当本地仓库版本库中的一个分之；
+	       $ git push origin master //表示将本地的最新版本信息推送到GitHub
+    5 根据远程仓库克隆本地仓库：
+	  命令：$ git clone git@github.com:Cloudzp/learngit.git
+ 三 分支管理：
+    1 什么是分支管理？
+	   多个不同的正在进行的工作目录！
+	2 为什么使用分支？
+	    当你有工作文件既不想上传到被大家公用，放在本地有害怕文件丢失的时候就需要创建分支
+		当你完成自己的工作后可通过合并分支；
+	3 创建与合并分支
+	   a)创建 dev 指针：
+	      命令：$ git checkout -b dev（创建加切换） //git checkout 命令上加上参数-b表示创建并且换，相当于以                    下两条命令：
+		      $ git branch dev
+		      $ git checkout dev
+           b)查看当前分支：
+              命令：$ git branch //结果是列出所有的分支；
+	   c)合并分支：
+	       命令：$ git merge dev // 作用是合并制定分支到当前分支；注意:合并分支时当前分支不能有修改或未提交的文件，切换分支也一样；
+		   干货：$ git merge --no--ff -m "写入分支合并时候的说明"// 使用这种命令合并分支（表示不是用默认的合并模式：fast forward）） 会留下历史记录我们可一查看分支的合并记录；
+		   
+	   d)删除分支：
+	        命令：$ git branch -d dev //表示删除dev分支
+   4) bug分支：
+      使用场景：当你正在分支上写代码时突然有一个bug需要修复，此时你还不想保存现有的代码到分支；你需要将现在的工作储藏起来--
+	  1 可以使用命令：$ git stash //这样你的工作取就会变得干净了，你就可以去创建新的分之了；
+	  2 等你修复好bug之后，你就可以回来通过命令：$ git stash list 查看你所有的缓存内容了；
+	  3 你可以通过两个命令恢复你上次正在进行的工作：
+	    命令1：git stash apply // 次命令恢复但不会删除你的缓存文件，需要你需要使用命令：$ git stash drop 删除文件stash内容；
+		命令2：git stash pop //次命令恢复并删除你的缓存文件；
+   5) 添加功能分支（feature）：
+      使用场景：当你需要在已经提交的代码中添加一项新功能的时候，你就需要创建一个新的分支来完成工作；
+	      第一步：命令：$ git checkout -b feature-vulan //创建一个名字为：feature-vulan 的分支；
+	      第二步：然后去完成你的开发工作，
+		          1）意外情况：当你正准备提交的时候你的老板告诉你功能取消；此时可以通过命令：
+		               $ git branch -D feature-vulan //用来强行删除未合并的分支；
+		           2） 正常情况： 合并分支，并删除 feature-vulan分支；
+五 远程仓库的使用：
+    1 产看远程连接信息：
+	   命令：$ git remote 也可以使用 $ git remote -v //查看更详细的连接信息；
+	2 多人协作的联系：
+	   a)创建一个工作分支dev作为你的开发分支；
+	    命令：$ git checkout -b dev //创建并切换；
+	   b)新建一个目录，创建为仓库d:/xiaoming/project
+	   c）在新建的目录下克隆远程仓库中的文件：
+	      命令：$ git clone git@github.com:Cloudzp/learngit.git //克隆远程仓库文件；
+	   d）创建并切换到dev分支，模拟小明的开发环境；
+	      命令：$ git checkout -b dev 
+	   e) 假设小明在text.txt文件中修改了内容并提交,同时你也修改了此文件去提交，就会发生冲突，会有如下异常：
+			 To github.com:Cloudzp/learngit.git	
+		      ! [rejected]        dev -> dev (non-fast-forward)
+			error: failed to push some refs to 'git@github.com:Cloudzp/learngit.git'
+			hint: Updates were rejected because the tip of your current branch is behind
+			hint: its remote counterpart. Integrate the remote changes (e.g.
+			hint: 'git pull ...') before pushing again.
+			hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
+	        这时你需要将本地文件同步后,将分支再次合并并提交在能提交；
+	        命令：$git pull //命令是把最新的文件内容从远程仓库中抓下来；
+	六 创建标签
+        作用：
+		1)创建标签：
+		 命令：$ git tag v1.0 //表示是1.0版本；
+		2)可使用git tag 命令查看所有标签：
+		 命令：$git tag 
+		3)给智定的版本打标签：
+         命令：$ git tag v1.0 commitid //commitid 表示指定的id
+		4）添加标签说明：
+          命令：git tag -a v1 -m "说明性文字"
+        5）查看标签的详细信息；
+          命令：$ git show version //version表示版本号		
+	    6）删除标签：
+		   命令：git tag -d version //version表示版本号
+		7）推送标签到远程仓库：
+		    命令：git push origin version //version表示版本号
+			      git push origin --tags //表示一次性推送完所有的版本号
+		8） 如果要删除远程的标签需要首先删除本地的标签：
+             命令：git tag -d tagname //删除本地标签；
+                   git push origin:refs/tags/tagname //删除远程标签		
+七 忽略文件
+   作用：有些时候，你必须把某些文件放在git目录下但又不想提交文件中的内容此时你就可以创建一个忽略文件（.gitignore），
+   创建方法：  
+        使⽤Windows的童鞋注意了，如果你在资源管理器⾥新建⼀个.gitignore⽂件，它会⾮常弱
+    智地提⽰你必须输⼊⽂件名，但是在⽂本编辑器⾥“保存”或者“另存为”就可以把⽂件保存为.gitignore了。
+八 配置别名：
+    命令：$ git --global alias.st status // 作用：将status简写成st
+	      $ git --global alias.ci commit // 将commit 简写成ci
+		  $ git --global alias.co checkout 
+		  $ git --global alias.last 'log -a'//表示输入 git last 显示最后一次提交信息；
+		  $ git config --global alias.lg "log --color --graph --
+            pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)
+            %C(bold blue)<%an>%Creset' --abbrev-commit" //配置颜色的快捷方式
