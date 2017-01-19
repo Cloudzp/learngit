@@ -1,1 +1,2 @@
 this is git staty day two!
+git is good !!
