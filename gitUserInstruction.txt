@@ -87,3 +87,55 @@
 五 远程仓库的使用：
     1 产看远程连接信息：
 	   命令：$ git remote 也可以使用 $ git remote -v //查看更详细的连接信息；
+	2 多人协作的联系：
+	   a)创建一个工作分支dev作为你的开发分支；
+	    命令：$ git checkout -b dev //创建并切换；
+	   b)新建一个目录，创建为仓库d:/xiaoming/project
+	   c）在新建的目录下克隆远程仓库中的文件：
+	      命令：$ git clone git@github.com:Cloudzp/learngit.git //克隆远程仓库文件；
+	   d）创建并切换到dev分支，模拟小明的开发环境；
+	      命令：$ git checkout -b dev 
+	   e) 假设小明在text.txt文件中修改了内容并提交,同时你也修改了此文件去提交，就会发生冲突，会有如下异常：
+			 To github.com:Cloudzp/learngit.git	
+		      ! [rejected]        dev -> dev (non-fast-forward)
+			error: failed to push some refs to 'git@github.com:Cloudzp/learngit.git'
+			hint: Updates were rejected because the tip of your current branch is behind
+			hint: its remote counterpart. Integrate the remote changes (e.g.
+			hint: 'git pull ...') before pushing again.
+			hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+	        这时你需要将本地文件同步后,将分支再次合并并提交在能提交；
+	        命令：$git pull //命令是把最新的文件内容从远程仓库中抓下来；
+	六 创建标签
+        作用：
+		1)创建标签：
+		 命令：$ git tag v1.0 //表示是1.0版本；
+		2)可使用git tag 命令查看所有标签：
+		 命令：$git tag 
+		3)给智定的版本打标签：
+         命令：$ git tag v1.0 commitid //commitid 表示指定的id
+		4）添加标签说明：
+          命令：git tag -a v1 -m "说明性文字"
+        5）查看标签的详细信息；
+          命令：$ git show version //version表示版本号		
+	    6）删除标签：
+		   命令：git tag -d version //version表示版本号
+		7）推送标签到远程仓库：
+		    命令：git push origin version //version表示版本号
+			      git push origin --tags //表示一次性推送完所有的版本号
+		8） 如果要删除远程的标签需要首先删除本地的标签：
+             命令：git tag -d tagname //删除本地标签；
+                   git push origin:refs/tags/tagname //删除远程标签		
+七 忽略文件
+   作用：有些时候，你必须把某些文件放在git目录下但又不想提交文件中的内容此时你就可以创建一个忽略文件（.gitignore），
+   创建方法：  
+        使⽤Windows的童鞋注意了，如果你在资源管理器⾥新建⼀个.gitignore⽂件，它会⾮常弱
+    智地提⽰你必须输⼊⽂件名，但是在⽂本编辑器⾥“保存”或者“另存为”就可以把⽂件保存为.gitignore了。
+八 配置别名：
+    命令：$ git --global alias.st status // 作用：将status简写成st
+	      $ git --global alias.ci commit // 将commit 简写成ci
+		  $ git --global alias.co checkout 
+		  $ git --global alias.last 'log -a'//表示输入 git last 显示最后一次提交信息；
+		  $ git config --global alias.lg "log --color --graph --
+            pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)
+            %C(bold blue)<%an>%Creset' --abbrev-commit" //配置颜色的快捷方式
