@@ -17,6 +17,7 @@ Python 学习日记；
    (b) IPython :是基于CPython之上的一个交互式解释器，也就是说，IPython只是在交互方式上的增强，但是执行Python代码的功能和CPython是完全一样的（CPython用>>>作为提示符，而IPython使用 In[序号]：作为提示符）。
   （c）PyPy ：是另一个Python解释器，它的目的是执行速度。PyPy采用JIT技术，对Python代码进行动态编译（注意不是解释），所以可以显著提高执行速度；
   （d）Jython 试运行在Java平台上的Python解释器，可以直接吧Python代码编译成Java字节码执行。
+  （e）Python代码运行助手：是一个可以让你在线输入Python代码，然后通过本机运行的一个Python脚本代码（使用方法：打开命令窗口，切换到脚本所在目录，通过命令：python 脚本文件，来启动Python运行助手）。
 5 Python程序的编写：
   首先，我们可以在命令行中输入：python 后出现一段话最后出现符号：“>>>”表示此时Python程序已经打开 我们就可以在这里编写程序了，但是在这里编写的Python程序只能运行一次不能保存，所以我们开发过程中一般都是在编辑器中编写程序，保存成.py的文件，在命令行中通过：python filename.py 的方法执行文件程序；
   注意：在命令行中直接编写Python程序，与通过编辑器编写程序，通过命令行执行程序是有差别的，在编辑器中编辑好的程序在命令行中执行时候，必须使用print（）方法将输出内容打印出来是才会显示该内容，而在命令行中直接编写程序，不需要print()也可以输出结果；
@@ -26,7 +27,7 @@ Python 学习日记；
 	用Python开发程序，完全可以一边在文本编辑器里写代码，一边开一个交互式命令窗体，在写代码过程中，把一部分代码粘贴到命令行中去验证，事半功倍！
 6 输入输出：
   输出：在Python中输出使用print("") 表示输出双引号里边的内容，不同的字符串输出也可以使用“，”隔开，输出后“，”号自动转换成空格[M 0,；
-  输入: 需要定义变量去接受 输入的值 如：name = input()//表示将输入的值赋给name变量；
+  输入: 需要定义变量去接受 输入的值 如：name = input() #表示将输入的值赋给name变量；
 
 第二章 Python基础
    1 Python语法：
@@ -39,9 +40,235 @@ Python 学习日记；
       （b） 浮点数；
       （c） 字符串：
       （d） 布尔值：在Python中可以直接使用True、False表示布尔值（请注意大小写);
-            逻辑运算符号：and //表示与运算，表示条件同时满足时返回True；
-	                 or //表示或运算，表示只要右一个满足条件，返回True；
+            逻辑运算符号：and # 表示与运算，表示条件同时满足时返回True；
+	                 or # 表示或运算，表示只要右一个满足条件，返回True；
       （e） 空值：空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。此外，Python还提供了列表、字典的等多种数据类型，还允许创建自定义数据类型；
    3 Python中的变量：
-      在Python中，等号=是赋值语句，可以把任意的数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同的数据类型变量。
+      在Python中，等号=是赋值语句，可以把任意的数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同的数据类型变量。这种变量本身类型不固定的语言称为动态语言，与之对应的是静态语言。静态语言在定义变量时必须指定变量类型，如果赋值的时候类型不匹配，就会报错。例如：Java是静态语言，和静态语言相比动态语言更灵活；
+   4 常量：所谓的常量就是不会变的量，在Python中，通常用全部的大写的变量名表示常量；
+   5 关于除法：
+       * 在Python中，有两种除法，一种是/:
+       >>> 10/3
+       3.3333333333333333333   # /除法计算结果是浮点数，即使是两个整数恰好整出，结果也是浮点；
+       * 另一种是 //:
+       >>> 10//3 
+        3                      #表示地板除法；
 
+      变量的命名：变量名必须是大小写英文、数字和下划线组合，且不能用数字开头；
+   6 编码问题：
+     （a） 各种编码集之间的关系；
+          因为计算机正能处理数字，如果要处理文本，就必须先把文本转换成数字才能处理。最早的计算机在设计时采用8比特作为一个字节（byte），所以，一个字节能表示的最大整数就是255（二进制11111111=十进制的255），如果表示更大的整数，就必须要使用更多字节
+	  ASCII编码：由于计算机是美国人发明的，因此，最早只有127个字母被编码到计算机中，也就是大写英文字母，小写英文字母、数字和一些符号，这个编码表示被称为ASCII编码；
+         GB2312:但是要处理中文显然一个字节是不够的，至少需要两个字节，而且还不能和ASCCII编码冲突，所以，中国制定了GB2312编码，用来把中文边进去；
+         Unicode：由于全世界有上百种语言，各国有各国的标准，就会不可避免的出现冲突，结果就是，在多种语言混合的文本中，显示出来会乱码。因此就产生了Unicode，Unicode把所有语言都统一到了一套编码里，这样就不会再有乱码问题了，Unicode使用两个字节表示一个字符（如果要使用比较偏僻的字符，就需要4个字节）。
+         UTF-8 :使用Unicode是解决了编码问题，但是又带来了新的问题就是，Unicode统一使用2个字节作为一个字符，这样用Unicode编码比ASCII编码需要多一倍的储存空间，在存储和传输上十分划不着，所以，本着节约的精神，又出现了把Unicode编码转化为“可变长编码”的UTF-8编码。UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，通常英文都是用一个字节，汉子通常使用3个字节，只有很偏僻的字符被编码成4-6个字节。如果你要传输的文本包含大量英文字符，用UTF-8编码就能节约空间；UTF-8还有一个额外的好处就是ASCII编码实际上被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作。
+    （b） 查看编码及编码转换成字符：
+       Python提供了ord（）函数获取字符的整数表示形式，chr（）可以将字符的编码还原成字符；
+     ## Unicode表示的字符串可以通过 encode（）方法指定编码的字符集，例如：
+     >>>'ABC'.encode("ascii")
+     b'ABC'  #表示指定编码集为ASCII一个字符占一个字节；
+     >>>'中文'.encode("utf-8")
+     b\xe4\xb8\xe6\x96\x87
+     ## 如果我们从网盘上或磁盘上读取了字节流，那么读到的数据就是bytes。要把bytes变成str,就需要使用decode()方法：例如：
+     >>> b'ABC'.decode('ascii') 
+     ‘ABC’
+     >>> b\xe4\xb8\xe6\x96\x87 
+      '中文' 
+      ## 要计算字符串的长度，可以使用len()函数：
+     >>>len('ABC')
+     3
+     >>>len('中文')
+     2
+   7 list : 是Python内置的一种数据类型列表。list是一种有序的集合，可以随时添加和删除其中的元素,例如，列出一个班里所有同学的名字，就可以使用一个list说明。
+   >>> classmates = ['Micheal','Bob','Tracy']
+   >>> classmates
+   结果：['Micheal','Bob','Tracy']
+   * 变量classmates就是一个list.使用len()函数可以获得list元素的个数：
+   >>>len(classmates)
+   结果:3
+   * 用索引来访问list中的元素，索引从0开始计数。
+   >>> classmates[0]
+   结果：‘Micheal’
+   >>> classmates[1]
+   结果：‘Bob’
+   >>> classmates[2]
+   结果： 'Tracy'
+   >>> classmates[3]
+   结果：Traceback (most recent call last):
+   File "<pyshell#5>", line 1, in <module>
+    classmates[3]
+   IndexError: list index out of range
+   >>> classmates[-1]
+   结果：'Tracy'
+   >>> len(classmates) #使用len()方法可以获取集合的长度；
+   结果：3
+   *list集合的操作：
+     （a） 添加元素：
+       >>> classmates.append('Adam')
+       >>> classmates
+       结果：['Micheal', 'Bob', 'Tracy', 'Adam']
+     （b）移除list中的元素：
+       >>> classmates.pop()  #使用pop()方法可以移除掉list列表中的最后一个元素；
+       结果：'Adam'
+        >>> classmates
+       结果：['Micheal', 'Bob', 'Tracy']
+        >>> classmates.pop(0) #使用pop()方法给定下标，表示删除指定下标的元素；
+       结果；'Micheal'
+       >>> classmates
+        结果：['Bob', 'Tracy']
+     （c）元素替换：
+       >>> classmates[0]='Jack' #表示把第1个元素替换成Jack
+       >>> classmates
+       结果：['Jack', 'Tracy']
+     （d）list中还可以包含另一个list，组成一个多维数组；要想访问list中的list，有两种方法可以访问：
+     一种：直接访问里边的list
+     另一种：可以通过最外面的list访问到里面的list；
+     例如：
+        >>> course = ['Java','PHP','C']
+        >>> info = ['zhangsan','男',course，24]
+        >>> info = ['zhangsan','man',course,24]
+        >>> info
+        结果：['zhangsan', 'man', ['Java', 'PHP', 'C'], 24] #list中可以包含另一个list；
+     8 Python中的另一种有序列表叫做组：tuple。tuple和list类似，但是tuple一旦初始化就不能修改，比如;
+     >>>classmates=('Micheal','Bob','Tracy')  #在classmates这个组中tuple不能再改变了，所以它就没有append(),insert()这样的方法。其他获取元素的方法和list是一样的，你可以使用classmates[0]获取组中的指定元素，但是不能赋值成另一个元素。
+    * 不可变tuple有什么意义呢？
+        因为tuple不可变，所以代码更安全。如果可能，能使用tuple代替list就尽量使用tuple。
+    * 注意事项：当你定义一个tuple时，在定义时，tuple的元素就必须被确定下来，有点类似于Java中的静态常量。在Python中如果你要定义一个空的tuple可以直接使用 name=（）来完成，如果你要定义一个只有一个元素的tuple，你需要 name=（1，），因为你只写一个name=(1),在Python中会认为()是运算中使用的括号，这样定义出来的name 属性只是一数字不是一个tuple。
+     9 条件判断：
+       例如：
+         age = 20
+	 if age >= 18 :
+	     print('your age is',age)
+	     print('adult')
+         else:
+	     print('your age is',age)
+	     print('teenager')
+
+     运行结果：your age is 20
+               adult 
+     * if语句的整体结构：
+        if <条件判断1>：#注意在这里不要少写冒号；[M A)
+	   （执行1）
+	elif<条件判断2>：
+	    （执行2）
+	elif<条件判断3>：
+	     （执行3）
+	else：
+	      （执行4）
+     *if判断条件还可以简写：
+        if x:
+	    print('True') #表示只要x是一个非0值，非空字符串，非空list等，就判断为True，否则为False。
+     *注意：先看以下例子：
+      birth = input('birth:')
+      if birth < 2000:
+        print('00前')
+	else：
+	print('00后’)
+  会出现以下错误：
+    Traceback (most recent call last):
+    File "test2.py", line 2, in <module>
+     if birth < 2000:
+    TypeError: '<' not supported between instances of 'str' and 'int'
+    #意思表示str类型不能和整数进行比较，这时候需要将用户输入的信息进行转换类型，  修改为：
+      str = input('birth:')
+      birth = int(str)   #使用int()方法将str转换成int再进行比较；
+      if birth < 2000:
+        print('00前')
+	else：
+	print('00后’)
+  修改后可执行出正确结果；
+10 循环：
+     （a）Python中有两种循环：一种是for...in循环，依次把list tuple 中的元素迭代出来。
+     例子：
+     names = ['Michael','Bob','Tracy']
+     for name in names:  #表示将names这个list迭代输出；
+         print(name)
+     输出结果：
+     Michael
+     Bob
+     Trac
+#编写Python代码实现功能：计算1-10整数之和
+sum = 0 
+for x in[1,2,3,4,5,6,7,8,9,10]:
+    sum = sum + x
+print(sum)
+运行结果：
+55
+例子2：
+#计算1-100的整数之和，从1写道100优点困难，幸好Python提供了一个range()函数，可以##声称一个序列，再通过list()函数转换为list.比如range(5)生成的序列是从0开始的小于5#的整数：
+sum = 0
+for x in range(101):
+    sum = sum + x
+print(sum)
+#运行结果：5050
+(b)第二种循环是while循环，例子：
+#使用while循环的小联系：
+sum = 0 
+n = 99
+while n > 0:
+    sum = sum + n
+    n = n -2
+print(sum)
+ #执行结果：2500
+ #小提示：如果程序陷入死循环可以使用【Ctrl】+c 强行结束程序；
+11 dict(字典，在其他语言中相当于Map集合)
+   dict的初始化：
+   >>> names = {'Micheal':95,'Bob':75,'Tracy':85}
+   通过key来查询对应的值：
+   >>> d['Micheal']
+   #结果:95
+第三章 函数定义与使用；
+1 函数的定义：
+  例子：
+   >>> def my_abs(x):
+           if x > 0:
+	       return x
+	    else:
+	       return -x
+  # 注意定义函数完成后 ，需要连按两次Enter键盘，确定交互界面回到>>>下之后才能调   用函数：
+2 函数的参数：
+  （a）位置参数：是指在传递参数过程中根据参数的位置去判断那个变量接受对应的哪一个参数：
+  （b）默认参数：是指在方法定义时候，参数列表中可以给定默认的值，这样在调用方法的时候就可以只给定没有默认值的方法，这样就降低了我们调用函数的难度，设置默认参数时，有几点要注意：
+  1 是必选参数在前，默认参数在后，否则Python的解释器会报错；
+  2 档函數有多个参数时，把变化打的参数放前面，变化小的参数放到后面。变化晓得参数就可以作为默认参数。
+  例子：
+   # 定义一个函数记录某一个小学学生的注册信息，由于小学处在西安，所以学生的城市大多都在西安，这样就可以把学生的地址设置成默认参数，当学生地址为西安时候就可以默认使用这个地址了，而不需要重复性的输入；
+   >>>def enroll(name,addre='西安'):
+          print('name:',name)
+          print('addre:'addre)
+   #当是西安本地学生注册时候，函数可以这样调用：
+   >>>enroll('张三')
+   #结果：name：张三
+          addre：西安
+   >>>enroll('李四'，‘北京’)
+   #结果：name：李四
+          addre：北京
+  3可变参数：当函数定义时，函数的个数不确定时，就可以使用可变参数：
+  # 例如：给定一组数字a,b,c......，计算a平方+b平方+c平方。。。。。
+    >>>def calc(*numbers):
+           sum = 0
+	   for n in numbers:
+	       sum = sum + n * n
+	   return sum
+   #这样我们调用函数的时候只需要传入对应的参数就可以了
+   >>> calc(1,2,3)
+   结果:14
+   >>> calc(1,2,3,4)
+   结果:30
+  4关键字参数：可变参数允许你传入0个或者任意个参数，这些可变参数在函数调用时会自动组装为一个tuple。而关键字参数允许你传入0个或任意个含参名的参数，这些关键字参数在函数内部自动组装为一个dict。
+    # 例子：
+    >>>def person(name,age,**kw):
+           print('name:',name,'age:',age,'other:',kw)
+    >>>person('张三',23,city='北京')
+    结果：name：张三 age：23 other{‘city’：‘北京’}
+    #关键字参数的作用：
+       它可以扩展函数功能。比如，在person函数里，我们保证能接受到name和age两个参数，但是，如果调用者愿意提供更多的参数，我们也能收到。试想你正在做一个用户注册的功能，除了用户名和年龄是必填的项外，和可变阐述类似，也可以组装出一个dict，然后，把该dict转换成关键字传进去：
+  5命名关键字参数：
+   #还没有理解完全：
+  6递归函数：
+   在函数内部，可以调用其他函数。如果一个函数在内部调用自身，这个函数就是递归函数。举例说明，我们来计算阶乘 n! = 1 x 2 x 3 x 4 .... n,用函数fact(n)表示，可以看出：就是函数本身每次去掉用函数本身自己：所以，fact(n) 可以表示为 n x fact(n-1),只有n=1时需要特殊处理。于是，fact（n）使用递给的方式写出来就是：
+>>>def fact(n):
+        if(n==1):
+	    return 1
+	 return n*fact(n-1);
+ 
